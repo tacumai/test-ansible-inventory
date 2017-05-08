@@ -1,0 +1,42 @@
+---
+- name: Rubyの存在確認
+  shell: which ruby
+  register: ruby_install
+  failed_when: ruby_install.rc not in [0, 1]
+
+- name: gitからrbenvをクローンする
+  git: repo=https://github.com/sstephenson/rbenv.git dest=~/.rbenv
+  when: ruby_install.rc == 1
+
+- name: rbenvビルドプラグインをクローンする
+  git: repo=https://github.com/sstephenson/ruby-build.git dest=/root/.rbenv/plugins/ruby-build
+  when: ruby_install.rc == 1
+
+- name: profile_init.sh内のREPLACE_EXECRBENVをrbenv initに置換する
+  replace:  dest=/etc/profile.d/profile_init.sh regexp="^#REPLACE_EXECRBENV" replace='eval "$(rbenv init -)" >/dev/null 2>&1'
+  when: ruby_install.rc == 1
+
+- name: bashの実行
+  shell: /etc/profile.d/profile_init.sh
+  when: ruby_install.rc == 1
+
+- name: 2.1.8のインストール
+  command: rbenv install 2.1.8
+  when: ruby_install.rc == 1
+
+- name: 2.2.4のインストール
+  command: rbenv install 2.2.4
+  when: ruby_install.rc == 1
+
+- name: rehashを行う
+  command: rbenv rehash
+  when: ruby_install.rc == 1
+
+- name: 2.1.8をデフォルトに設定
+  command: rbenv global 2.1.8
+  when: ruby_install.rc == 1
+
+- name: rehashを行う
+  command: rbenv rehash
+  when: ruby_install.rc == 1
+

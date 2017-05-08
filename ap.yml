@@ -1,0 +1,4 @@
+- hosts: ap
+  connection: docker
+  roles:
+    - { role: geerlingguy.ruby }

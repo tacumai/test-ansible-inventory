@@ -1,0 +1,4 @@
+- hosts: web
+  connection: docker
+  roles:
+    - { role: geerlingguy.nginx }

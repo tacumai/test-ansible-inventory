@@ -1,0 +1,3 @@
+---
+- include: ap.yml
+- include: web.yml
