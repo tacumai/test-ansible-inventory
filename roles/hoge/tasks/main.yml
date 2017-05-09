@@ -1,0 +1,5 @@
+---
+- name: Hello world
+  copy:
+    src: sample.txt
+    dest: ~/{{ your_name }}.txt

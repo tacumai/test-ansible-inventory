@@ -1,4 +1,6 @@
 - hosts: ap
   connection: docker
+  vars_files:
+    - vars/{{ stage }}.yml
   roles:
     - { role: geerlingguy.ruby }

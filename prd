@@ -1,0 +1,12 @@
+[ap]
+docker-ap4
+docker-ap5
+docker-ap6
+
+[web]
+docker-web4
+docker-web5
+docker-web6
+
+[all:vars]
+stage=prd

@@ -1,4 +1,7 @@
 - hosts: web
   connection: docker
+  vars_files:
+    - vars/{{ stage }}.yml
   roles:
     - { role: geerlingguy.nginx }
+    - hoge

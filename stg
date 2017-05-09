@@ -1,0 +1,12 @@
+[ap]
+docker-ap1
+docker-ap2
+docker-ap3
+
+[web]
+docker-web1
+docker-web2
+docker-web3
+
+[all:vars]
+stage=stg
